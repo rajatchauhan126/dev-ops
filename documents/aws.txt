@@ -1,0 +1,64 @@
+
+------------------------Create AWS account--------------------------
+-----------Important note---------------
+--AWS is free for 1 year or 720 hours. After this it will be paid
+--Always stop the AWS virtual machines if not in use, otherwise it will be considered as in use and charge will be deduct from total 720 hour.
+--Always create machines which shows "Free tier eligible"
+
+-----------create a new account on AWS and VM----------
+Follow this article https://medium.com/@GalarnykMichael/aws-ec2-part-1-creating-ec2-instance-9d7f8368f78a
+
+    or 
+
+--goto https://aws.amazon.com/
+--Sign in to the console.
+--service -> EC2 -> Launch Instance -> 
+--Step 1: Choose an Amazon Machine Image (AMI) 
+    "Amazon Linux AMI 2018.03.0 (HVM), SSD Volume Type"  //for linux
+
+Step 2: Choose an Instance Type 
+    General purpose
+        t2.micro
+        Free tier eligible
+
+        -> Review and Instance
+
+Step 6: Configure Security Group //Review and Launch
+Step 7: Review Instance Launch  
+        -> Launch
+
+Step 8: create the new key pair and save it somewhere as this is very important in future as well.
+        -> Launch
+
+-----------Access the VM------------------
+
+https://medium.com/@GalarnykMichael/aws-ec2-part-2-ssh-into-ec2-instance-c7879d47b6b2
+
+or
+
+chmod 400 /Desktop/my_key.pem
+
+ssh -i /path_to_key/my_key.pem user_name@public_dns_name
+
+// path_to_key/my_key.pem //path of your file
+// user_name // ec2-user
+// public_dns_name // 18.217.92.158
+
+eg. ssh -i Desktop/Python_Tutorials.pem ec2-user@18.217.192.158
+
+puttygen //for converting pem to ppk
+
+-----
+--open putty //if not avaialble download from putty official site https://putty.org/
+
+login -> session -> Host name - 18.217.192.158  
+      -> ssh -> auth -> Browse //Browse the path of ppk file.
+
+----------------Access window vm----------------
+https://docs.aws.amazon.com/AWSEC2/latest/WindowsGuide/connecting_to_windows_instance.html
+
+type mstsc, if showing error install Remote Desktop connection
+
+--follow the steps in the above article, 
+user name is - adminstrator
+password - go through the above link to generate password.

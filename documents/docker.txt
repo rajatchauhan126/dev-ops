@@ -1,1 +1,15 @@
 "Docker docs" 
+-----------------------------------------Introduction-------------------------------
+Docker is a full development platform for creating containerized apps,
+
+
+-----------------------------------------Installation-------------------------------
+
+--Open official website of docker 
+    --https://www.docker.com/get-started
+
+--download for windows
+    --Requires Microsoft Windows 10 Professional or Enterprise 64-bit. For previous versions get Docker Toolbox.
+
+----------------------------------------Basic commands------------------------------
+
