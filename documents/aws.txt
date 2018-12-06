@@ -4,6 +4,7 @@
 --AWS is free for 1 year or 720 hours. After this it will be paid
 --Always stop the AWS virtual machines if not in use, otherwise it will be considered as in use and charge will be deduct from total 720 hour.
 --Always create machines which shows "Free tier eligible"
+--Don't create windows machine, try to work on ubuntu.
 
 -----------create a new account on AWS and VM----------
 Follow this article https://medium.com/@GalarnykMichael/aws-ec2-part-1-creating-ec2-instance-9d7f8368f78a
