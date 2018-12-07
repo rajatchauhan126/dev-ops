@@ -11,5 +11,30 @@ Docker is a full development platform for creating containerized apps,
 --download for windows
     --Requires Microsoft Windows 10 Professional or Enterprise 64-bit. For previous versions get Docker Toolbox.
 
+--------AWS Installation
+--https://docs.aws.amazon.com/AmazonECS/latest/developerguide/docker-basics.html#install_docker
+
+---------commands
+--docker run -d busybox:1.24 sleep 1000
+--docker ps
+--docker run --rm busybox:1.24 sleep 1
+--docker ps -a //to list all the container
+--docker run --name hello_world busybox:1.24 //specify which image to run
+--docker ps -a
+
+-------low level of docker image
+-- docker run -d busybox:1.24 sleep 100//detach mode
+-- docker inspect "cf269eefe56ec0c3a171ffbc40355fdd5b1c83382efdbf63265283dc08bbbe7c"//the ip address and mac address etc
+
+---------docker port mapping and docker logs commands-----
+-- tomcat image that execute java servlet
+
+-- go to tomcat page //offical site
+
+
+
+
+
+
 ----------------------------------------Basic commands------------------------------
 
