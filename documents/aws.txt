@@ -32,12 +32,21 @@ Step 8: create the new key pair and save it somewhere as this is very important 
         -> Launch
 
 -----------Access the VM------------------
+--for linux
 
 https://medium.com/@GalarnykMichael/aws-ec2-part-2-ssh-into-ec2-instance-c7879d47b6b2
 
 or
 
+go to security group -> select default -> inbound -> edit
+                                                    type = ssh
+                                                    port range = 22
+                                                    protocol = tcp
+                                                    source = custom
+
 chmod 400 /Desktop/my_key.pem
+
+change the security groups for machine to default.
 
 ssh -i /path_to_key/my_key.pem user_name@public_dns_name
 
@@ -47,6 +56,11 @@ ssh -i /path_to_key/my_key.pem user_name@public_dns_name
 
 eg. ssh -i Desktop/Python_Tutorials.pem ec2-user@18.217.192.158
 
+----------------
+--for ubuntu
+
+
+----------------------
 puttygen //for converting pem to ppk
 
 -----

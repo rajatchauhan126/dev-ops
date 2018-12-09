@@ -32,9 +32,33 @@ Docker is a full development platform for creating containerized apps,
 -- go to tomcat page //offical site
 
 
+---------------------------------------Build Docker images by docker commit command--------
+Note : type sudo su whenever commands are not executing, and exit command to come out of container
+
+step 1 : go to docker hub, search debian.
+step 2 : there are list of images there, we will use jessie image.
+step 3 : go to putty, -> type sudo su 
+step 4 : docker run -it debain:jessie
+step 5 : ls
+stpe 6 : type git, will get error
+step 7 : apt-get update && apt-get install git
+step 8 : type git, now it will show help option
+step 9 : docker ps -a//docker commit command would save the changes we made to the docker container's file system to a new image.
+step 10 :docker commit dockerid dockerhub repository name:1.00 //return id of new image and tags
+    //base image is debian and extended image is my username
+step 11 : docker images
+step 12 :  docker run -it Repository:1.00     //repository you just created
+step 13 : ls //to see the folder strcture.
+
+
+
+
+
 
 
 
 
 ----------------------------------------Basic commands------------------------------
+--Installation steps link : https://www.digitalocean.com/community/tutorials/how-to-install-and-use-docker-on-ubuntu-18-04
+
 
