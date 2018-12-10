@@ -51,7 +51,7 @@ step 12 :  docker run -it Repository:1.00     //repository you just created
 step 13 : ls //to see the folder strcture.
 
 
-
+---------------------
 
 
 
@@ -60,5 +60,49 @@ step 13 : ls //to see the folder strcture.
 
 ----------------------------------------Basic commands------------------------------
 --Installation steps link : https://www.digitalocean.com/community/tutorials/how-to-install-and-use-docker-on-ubuntu-18-04
+
+-------------------------Build docker images by writing dockerfile------------
+-- touch Dockerfile //without any extension
+-- vi Dockerfile
+-- 
+    FROM debian:jessie //from base image, we will use debian jessie 
+    RUN apt-get update //command to execute
+    RUN apt -get install -y git
+    RUN apt-get install -y vim
+
+--save the file and exit 
+
+-- docker build -t jameslee/debain . //docker build will build file using the docker file
+
+-- docker images
+
+----------------------------Best practice to write Docker file-----------------
+-- will work with old Dockerfile
+            FROM debian:jessie //from base image, we will use debian jessie 
+    RUN apt-get update //command to execute
+    RUN apt -get install -y git
+    RUN apt-get install -y vim
+
+--change to one line only
+            FROM debian:jessie //from base image, we will use debian jessie 
+    RUN apt-get update && apt -get install -y git && apt-get install -y vim
+
+or
+
+RUN apt-get update && apt -get install -y \ 
+    git \ 
+    vim
+
+-- continue with the same file and append
+
+CMD ["echo", "Hello world"]
+
+
+
+
+
+
+
+
 
 
