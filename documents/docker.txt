@@ -97,7 +97,93 @@ RUN apt-get update && apt -get install -y \
 
 CMD ["echo", "Hello world"]
 
+--docker cache--
+    if old image has not change, then it will take the copy of old image from cache
+    and load from cache only. this will improve the performance
 
+ 1) chain instruction
+ 2) invalidate cache-- --no-cache=true
+    docker build -t jameslee/debain . --no-cache=true
+
+
+--copy container, copy a file to the constructor
+
+FROM debain:jessie
+RUN apt-get update && apt-get install -y \
+    git \
+    vim
+COPY abc.txt /src/abc.txt
+
+--save and exit
+--rebuild the image, using docker  build -t jameslee/debain .
+--docker run -it imagename
+--check in src folder
+
+Add instrunction
+--all to download from internet and copy to container.
+--ability to automatically unpack compressed files.
+--copy is preferred over add.
+--try to use copy.
+
+------------------Push images to docker hub---------
+--go to docker hub, login
+
+--push a image
+    docker_hub id / repository name  //id - username ,
+
+-- docker images
+-- docker tag imageid username/debain //imageid choose from image list
+
+--latest tag -- default tag when no tag is provided, not work in reality just a convension
+    avoid using latest tag.
+
+-- docker images
+-- docker login --username=jleetutorial //push to docker hub
+-- docker push jleetutorial/debain:1:01 //1:01 = docker tag
+
+----------containerize hello_world container----------
+//using flask image for example
+
+// create a folder, then create two files Dockerfile and app.py
+// write below code in app
+
+FROM flask import Flask 
+app = Flask(__name__)
+
+@app.route('/')
+def hello_world():
+    return 'Hello, world!'
+
+if __name__ == '__main__':
+    app.run(host='0.0.0.0')
+
+//save and exit
+
+//write the below code in Dockerfile
+
+FROM python:3.5
+RUN pip install Flask=-0.11.1
+RUN useradd -ms /bin/bash admin
+USER admin
+WORKDIR /app
+COPY app /app
+CMD ["python", "app.py"]
+
+//save and exit
+
+-- docker build -t dockerapp:v0.1 .
+-- docker images
+-- docker run -d -p 5000:5000 //-d to run in background, -p for 
+
+//access the python server, for linux
+
+-- docker-machine ls //give the ip
+-- open browser ip:5000
+
+-----------login into container-------
+-- docker exec -it containerid bash  //login as admin user
+
+-- ps axu 
 
 
 
