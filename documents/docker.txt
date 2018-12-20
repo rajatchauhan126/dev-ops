@@ -144,6 +144,11 @@ Add instrunction
 ----------containerize hello_world container----------
 //using flask image for example
 
+clone the repository and start from below build command
+git clone -b v0.1 http://github.com/jleetutorial/dockerapp.git
+
+------or
+
 // create a folder, then create two files Dockerfile and app.py
 // write below code in app
 
@@ -162,7 +167,7 @@ if __name__ == '__main__':
 //write the below code in Dockerfile
 
 FROM python:3.5
-RUN pip install Flask=-0.11.1
+RUN pip install Flask=0.11.1
 RUN useradd -ms /bin/bash admin
 USER admin
 WORKDIR /app
@@ -173,9 +178,12 @@ CMD ["python", "app.py"]
 
 -- docker build -t dockerapp:v0.1 .
 -- docker images
--- docker run -d -p 5000:5000 //-d to run in background, -p for 
+-- docker run -d -p 5000:5000 imageId //-d to run in background, -p for 
 
 //access the python server, for linux
+
+//or , use the IPv4 Public IP 3.16.111.111 from aws , and also make sure that security group inbound is set to all traffic.
+
 
 -- docker-machine ls //give the ip
 -- open browser ip:5000
@@ -185,10 +193,215 @@ CMD ["python", "app.py"]
 
 -- ps axu 
 
+-------------implement a simple key-value loopup service--------
+
+1)
+
+2) using redis //key value pair
+    -in memory data strcture store, used as db, cache, message broker.
+    -build in replication and different level of on-disk persistance.
+    -widely used in product like facebook news feeds, twitter timeline service.
+
+------go to browser and type //this will give us microservice approach
+
+    https://pypi.org/project/redis/
+
+-------integrate redis with python //
+
+--update app.py to use redis
+
+app.py
+
+import redis
 
 
+-----------------create docker links--------------------- //transfer b/w 2 container
 
+-- docker urn -d --name redis redis:3.2.0
+-- docker ps
 
+-- docker build -t dockerapp:v0.3 .  //change the file first accordingly
+-- docker run -d -p 5000:5000 --link redis dockerapp:v0.3
+-- docker ps
+-- docker exec -it redisconatinerid bash
+-- more /etc/hosts
+-- exit 
 
+-- docker inspect redisconatinerid | grep IP 
+-- login to app container and ping redis //docker inspect //no need for other port by using link
 
+//recipient and source container
 
+--------------------docker compose-----------------//for lot of container 
+    --tool for defining and running multi-container docker applications.
+    --we create Compose file to configure our applications services.
+    -- then using single command, we create and start all the services from our configurations.
+
+-- install docker compose if not install
+-- docker-compose version // to check if install
+-- touch docker-compose.yml //write docker-compose.yml, 3 version of docker format, we will use version 3.
+
+vi docker-compose.yml
+    version: '3'
+    services: 
+        dockerapp:      //how to build and run the container
+            build: .
+            ports:
+                - "5000:5000"
+            depends_on:
+                - redis 
+        redis:
+            image: redis:3.2.0  //from existing or new images
+
+// in version 3, we don't need to link the container.
+-- //stop all container before proceed
+-- docker ps
+-- docker stop containerid
+
+--docker-compose up -d //to start the build process, -d in detach
+-- docker-compose ps
+-- docker-compose logs // -f for , dockerapp to find the logs of that container
+-- docker-compose rm --all // to remove
+-- docker-compose ps
+
+//all container will be schedule in one current node.
+//in sworm it will run in multiple nodes.
+
+-- docker ps //to verify if images are running
+
+-- docker-compose build // force new image
+
+-------------------Docker networking----------------------
+-- default network - 
+1. closed network/ none network
+2. bridge network
+3. host network
+4. overlay network
+
+-- docker network ls
+
+-- 1. none network - no access to outside world, isolated container.
+
+--  docker run -d --net none busybox sleep 1000 //run with none
+-- docker exec -t containerid /bin/ash
+
+//inside the container, from other container accessable.
+
+-- ping 8.8.8.8 //ping not okay
+-- ifconfig ,only one interface, only use with internal machine, no access to other. use for maximum security.
+
+--2.  //container have access to two network interfaces, a loopback interface, a private interface. //for small network
+-- docker network inspect bridge
+-- docker run -d --name container_1 busybox sleep 1000
+-- docker exec -it container_1 ifconfig
+
+-- docker run -d --name container_2 busybox sleep 1000 //try 
+-- docker exec -it container_2 ifconfig
+
+-- ping from container_1 to container_2 ip. //ping 172.17.0.3
+-- docker exec -it container_1 ping 8.8.8.8  //also, work, google public dns
+
+//create another bridge
+--docker network create --driver bridge my_bridge_network
+--docker network ls 
+--docker network inspect my_bridge_network//check the range
+
+// fire container_3 from another new bridge network
+
+-- docker run -d --name container_3 --net my_bridge_network busybox sleep 1000
+
+// ping one from 3, get the inspect
+
+-- docker exec -it container_3 ping 172.12.0.2  //can't reach
+-- docker network connect bridge container_3
+-- docker exec -it container_3 ifconfig
+
+-- docker exec -it container_3 ping 172.12.0.2 //now reach
+-- -- docker network disconnect bridge container_3
+-- docker exec -it container_3 ping 172.12.0.2 //not reach
+
+--3. //less protected, anyone can access, no isolation, give performance, 
+
+-- docker run -d --name container_4 --net host busybox sleep 1000
+-- docker exec -it container_4 ifconfig //all network interface are there.
+
+--4. // Accross multiple host machine networking.
+    //requisites - 
+        1. when run in sworm mode,overlay on manager node.
+        2. A key-value store such as consul .
+
+    //mostly used in production.
+
+-- docker-compose download
+
+-- vi docker-compose.yml
+
+    add in last
+
+    version: '3'
+    services: 
+        dockerapp:      //how to build and run the container
+            build: .
+            ports:
+                - "5000:5000"
+            depends_on:
+                - redis 
+            networks:
+                - my_net
+        redis:
+            image: redis:3.2.0  //from existing or new images
+            networks:
+                - my_net
+    networks:
+        my_net:
+            driver: bridge
+
+// save and exit
+
+-- docker compose up -d
+
+// this time network creted with driver bridge.
+
+---------------write unit test in docker container-----------------
+
+--create a file test.py in same where app.py is present
+
+import unittest
+import app
+
+class TestDockerapp(unittest.TestCase):
+
+    def setUp(self):
+        self.app=app.app.test_client()
+
+    def test_save_value(self):
+        response = self.app.post('/', data=dict(submit='save', key='2', cache_value='two'))
+        assert response.status_code == 200
+        assert b'2' in response.data
+        assert b'two' in response.data
+
+    def test_load_value(self):
+        self.app.post('/', data=dict(submit='save', key='2', cache_value='two'))
+        response = self.app.post('/', data=dict(submit='load', key='2'))
+        assert response.status_code == 200
+        assert b'2' in response.data
+        assert b'two' in response.data
+
+if __name__'__main__':
+    unittest.main()
+
+//save and exit
+
+-- dcokr-compose up -d
+-- docker-compose run dockerapp python test.py 
+
+-----------------Continuous intergration------------------------
+
+--add ssh key to github
+
+    https://help.github.com/articles/generating-a-new-ssh-key-and-adding-it-to-the-ssh-agent/
+
+----link circle3 CI with github accout
+
+-- clone the repo using ssh 
+    git clone git@github.com:jleetutorial/dockerapp.git
