@@ -401,7 +401,75 @@ if __name__'__main__':
 
     https://help.github.com/articles/generating-a-new-ssh-key-and-adding-it-to-the-ssh-agent/
 
-----link circle3 CI with github accout
+-----------link circle3 CI with github accout-----
 
 -- clone the repo using ssh 
-    git clone git@github.com:jleetutorial/dockerapp.git
+    https://help.github.com/articles/generating-a-new-ssh-key-and-adding-it-to-the-ssh-agent/
+ 
+ //need to fork this repository then this repository will be moved to your github.
+
+--  git clone git@github.com:rajatchauhan126/dockerapp.git
+
+-- login to circleci using github account
+
+-- add project -> select the github repository, go with default option
+    start build -> //it will fails this time. as we have not set password
+
+// now checkout to branch branch-v0.6
+  --  git checkout branch branch-v0.6
+  --  git checkout -b test-ci
+  --  mkdir dummy.txt
+  -- git add .
+  -- git commit -m "add a dummmy file"
+  -- git push origin test-ci
+
+  //automatically build will be trigger in the circleci
+
+  -------------publish docker image to docker hub from circleci---
+
+  -- go to circleci -> hit the button on the circle top side. 
+  -> select the success build -> top right, select project settings -> 
+    envionment variables -> Add variables
+
+    DOCKER_HUB_EMAIL     xxxx.com
+    DOCKER_HUB_PWD       xxxx@999
+    DOCKER_HUB_USER_ID   xxxxn234  
+        
+// go to fork docker repository 
+    -- git stash && git checkout branch-v0.6
+    -- git checkout -b circle_ci_publish
+
+// add  below line in config.yml , original code is in the master branch
+//imp link,  https://help.github.com/articles/generating-a-new-ssh-key-and-adding-it-to-the-ssh-agent/
+
+
+      -deploy:
+          name: Push application Dcoker image
+          command: |
+            docker login -e $DOCKER_HUB_EMAIL -u $DOCKER_HUB_USER_ID -p $DOCKER_HUB_PWD
+            docker tag dockerapp_dockerapp $DOCKER_HUB_USER_ID/dockerapp:$CIRCLE_SHA1
+            docker tag dockerapp_dockerapp $DOCKER_HUB_USER_ID/dockerapp:latest
+            docker push $DOCKER_HUB_USER_ID/dockerapp:$CIRCLE_SHA1
+            docker push $DOCKER_HUB_USER_ID/dockerapp:latest
+
+//save and auto build be trigger in Circleci , goto circleci and you will find a success build
+
+---------deploy docker app to cloud-------------
+
+-- install the docker machine
+-- docker-machine create --driver digitalocean --digitalocean-access-token tokenfrom digitalocean doker-app-machine// we can go for aws
+-- docker-machine env docker-app-machine
+-- set the env
+
+-- copy the docker-compose.yml prod.yml
+-- open prod.yml
+
+    change, image: rajatchauhan126/dockerapp //new dockerhub account
+
+-- docker-compose -f prod.yml up -d
+-- docker-machine ls
+
+/---------------
+
+docker-machine create --driver amazonec2 --amazonec2-access-key AKIAJV552EBUR64PKMSA --amazonec2-secret-key  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 aws01
+//docker machine for deploy in cloud

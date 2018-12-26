@@ -1,0 +1,16 @@
+Blockchain
+
+--The three primary forms of bitcoin clients are: 1)Full Client. 2) Light Client - eg. Multibit. 3) Web Client.
+
+--running distributed ledger systems.
+--The most popular programming language used currently to write smart contracts is Solidity. Solidity is an object-oriented high-level programming language.
+--keeping in mind the rules of the Ethereum Virtual Machine or EVM.
+
+-high degree of trust for business transactions. 
+-does not rely on a central authority for currency issuance or
+-settlement and validation of transactions. 
+-called a “Proof-Of-Work” algorithm- to conduct a global “election” every 10 minutes, 
+
+--A Solution To a Distributed Computing Problem
+
+--A blockchain explorer is a web application that operates as a bitcoin search engine, 
