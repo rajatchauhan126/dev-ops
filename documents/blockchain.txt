@@ -13,4 +13,106 @@ Blockchain
 
 --A Solution To a Distributed Computing Problem
 
---A blockchain explorer is a web application that operates as a bitcoin search engine, 
+--A blockchain explorer is a web application that operates as a bitcoin search engine, in that it allows
+you to search for addresses, transactions and blocks and see the relationships and flows
+between them.
+Popular blockchain explorers include:
+• blockchain.info
+• blockexplorer.com
+• insight.bitpay.com
+• blockr.io
+
+---The destination key is called an encumbrance. 
+Outputs from one transaction can be used as inputs in a new transaction, thus creating
+a chain of ownership as the value is moved from address to address.
+
+--types of transaction
+	1. Common transaction.
+	2. Aggregating transaction.
+	3. Distributing transaction.
+	
+-- how a transaction becomes part of a new block and how the block is “mined”
+
+--Bitcoin Mining
+The transaction is now propagated on the bitcoin network. It does not become part of the shared ledger (the blockchain) until it is verified and included in a block by a process
+called mining.
+
+--The bitcoin system of trust is based on computation. Transactions are bundled into
+blocks, which require an enormous amount of computation to prove, but only a small
+amount of computation to verify as proven. This process is called mining and serves
+two purposes in bitcoin:
+	-Mining creates new bitcoins in each block, almost like a central bank printing new
+money. The amount of bitcoin created per block is fixed and diminishes with time.
+	- Mining creates trust by ensuring that transactions are only confirmed if enough
+computational power was devoted to the block that contains them. More blocks
+mean more computation which means more trust.
+
+-- The digital keys are not actually stored in the network, but are instead created
+and stored by end-users in a file, or simple database, called a wallet. 
+
+--The public key can be then generated from the private key
+
+--Elliptic Curve Cryptography
+--Bitcoin addresses are almost always presented to users in an encoding called “Base58Check” 
+--Public Key to Bitcoin Address
+
+--Wallets
+	--Non-Deterministic (Random) Wallets
+	--Deterministic (Seeded) Wallets
+	--Mnemonic Code Words - BIP0039 is used by the Trezor wallet and a few other wallets but is incompatible with Electrum’s implementation
+	--Hierarchical Deterministic Wallets (BIP0032/BIP0044)
+	--Paper Wallets
+	
+--Transaction Lifecycle
+--coinbase transaction
+--Spending Conditions (Encumbrances)
+
+--The bitcoin transaction script language, also named confusingly Script.
+--Bitcoin’s scripting language is called a stack-based language because it uses a data structure called a stack. 
+
+----The Bitcoin Network
+--Peer-to-Peer Network Architecture -there are no “special” nodes and that all nodes share the burden of providing network services. 
+
+--A bitcoin node is a collection of functions: routing, the blockchain database, mining, and wallet services. 
+
+--Network Discovery
+
+--Simplified Payment Verification (SPV) Nodes
+	--Not all nodes have the ability to store the full blockchain. 
+
+--Bloom Filters
+--Transaction Pools - Almost every node on the bitcoin network maintains a temporary list of unconfirmed transactions called the memory pool or transaction pool. 
+--Alert Messages
+
+------------------------------------------The Blockchain----------------------------------------------
+The blockchain data structure is an ordered back-linked list of blocks of transactions.
+
+--Structure of a Block - A block is a container data structure that aggregates transactions for inclusion in the public ledger, the blockchain. 
+
+--The block header is 80 bytes, whereas the average transaction is at least 250 bytes and the average block contains more than 500 transactions. 
+
+--Block Header
+	--The block header consists of three sets of block metadata.
+		--First, there is a reference to a previous block hash,
+		--timestamp and nonce.
+		-- The third piece of metadata is the Merkle Tree root, a data structure used to efficiently summarize all the transactions in the block.
+
+
+--block can thus be identified two ways, either by referencing the block hash, or by referencing the block height.
+
+--The Genesis Block - The first block in the blockchain is called the genesis block and was created in 2009.
+--Linking Blocks in the Blockchain
+
+--Merkle Trees-A Merkle Tree, also known as a Binary Hash Tree is a data structure used for efficiently
+summarizing and verifying the integrity of large sets of data. Merkle Trees are binary
+trees containing cryptographic hashes.
+
+--Merkle Trees and Simplified Payment Verification (SPV)
+
+--Mining and Consensus
+	--Mining is the process by which new bitcoin is added to the money supply.
+
+
+
+
+
