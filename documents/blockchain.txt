@@ -112,7 +112,22 @@ trees containing cryptographic hashes.
 --Mining and Consensus
 	--Mining is the process by which new bitcoin is added to the money supply.
 
+--Mining Nodes
+--Aggregating Transactions into Blocks
+
+--Blockchain Forks
+	--distance” between nodes is measured in “hops” from node to node
+	-- chain re-convergence
+--many miners switched
+from using CPU mining to Graphical Processing Unit (GPU) mining and Field Pro‐
+grammable Gate Array (FPGA) mining. In 2013 the introduction of Application Specific
+Integrated Circuit (ASIC) 
 
 
+
+----------------------------------------------------------------videos----------https://nptel.ac.in/courses/106105184/------------------------------
+
+--Blockchain - is an open, distributed ledger that can record transaction between two parties efficiently and in a varifiable and permanent way.
+ 
 
 
