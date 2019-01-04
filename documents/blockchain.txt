@@ -129,5 +129,36 @@ Integrated Circuit (ASIC)
 
 --Blockchain - is an open, distributed ledger that can record transaction between two parties efficiently and in a varifiable and permanent way.
  
+--cryptographic secured hash function
+	--Hash function - Map any size data to a fixed size.
+		--cryptographically secured - one way, given x, we can compute H(x), but there is no way to find x from H(x).
+		--for different x1, x2 the H(x1) and H(x2) should be different. where x is a message and H(x) is message digest.
+			-- a small amount of change in data result in a significant change in output called avalanche effect.
+	
+--cryptographic secured chain of blocks
+			-- eg, x1,x2,x3,x4 - take a random input for x1, then the output of x1 is input for x2, and so on.
+			 
+		
+--Merkle tree - also called hash tree. used in 1992			
+			
+			------------------------------------Bitcoin-----------------
+	--Bitcoin is completely decentralized, peer to peer, permissionless cyroptocurrency put forth in 2009.
+	
+--Smart Contract - is an automated computerised protocol for digitally facilitating, validating or enforcing the negotiation or performance of a legal contract
+by avoiding intermediates and direct validate the contract over a decentralized platform - faster, cheaper and more secure.
 
+	--Smart contract - this term was first coined by Nick szabo in 1996. he claim smart contract can be realised with the help of public ledger.
+
+--croud funding. - kick starter.
+
+----------------The block inside a blockchain----------------------------
+--A block is a container data structure that contain series of transactions. average block size is 1mb. but now it is growing to 8mb and sometime more.
+--Structure of a block - 1) block header 2) block transaction
+
+--Smart Contract advantage
+
+
+
+
+			
 
