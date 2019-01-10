@@ -149,16 +149,58 @@ by avoiding intermediates and direct validate the contract over a decentralized 
 
 	--Smart contract - this term was first coined by Nick szabo in 1996. he claim smart contract can be realised with the help of public ledger.
 
---croud funding. - kick starter.
+-- eg of mediator, croud funding. - kick starter.
+
+--Smart Contract advantage
+	--Immutable - One contract can not be change by any party once it is writeen in public ledger(Blockchain).
+	--Distributed - All the steps of the contract can be validated by every participated party. Noone can claim in future that the contract is not validated.
 
 ----------------The block inside a blockchain----------------------------
 --A block is a container data structure that contain series of transactions. average block size is 1mb. but now it is growing to 8mb and sometime more.
---Structure of a block - 1) block header 2) block transaction
-
---Smart Contract advantage
-
-
-
-
+--Structure of a block -
+						1) block header 
+						2) list of transaction
 			
+			--Metadata about a block
+				--information about the previous block hash.
+				--Mining statistics used to construct the block.
+				--Merkle tree root.
+				
+			--Bitcoin mining formula : Hk= Hash(Hk-1 || T || Nonce) (H downpower k, T is transaction, Nonce is random number added)
+			--Header contain - timestamp, nonce and difficulty.
+		
+--How to manage replica - all the nodes in the network are interconnected and all the nodes has updated copy of the data. No single point of contact. Data is 
+stored in decentralized way. The system can provide data in case of some nodes failure.
+
+---------------------------------------------------Conceptualisation---------------
+--Always, new block adds to the longest chain in the blockchain. other short chain will not be in use and become orphan.
+
+--Blockchain 2.0 - type of permission 
+
+-----------imp lecture 4, 18:00min
+
+-----------------------------------Blockchain based distributed web---------------
+--IPFS -Inter planetarary file system - combine all the small storage of all the nodes and make a big system. Store the data in one node and link that data
+with other node, this will remove the duplication of data.
+--IPNS - Inter planetarary naming system - Every file can be found by human readable names using a decentralized naming system called IPNS.
+
+-------------ipfs.io - Ensure all the nodes have latest copy of data.
+
+--Hyperledger fabric - platform to implement this permissioned blockchain. 
+					 - A permissioned framework that provide an enterprise-grade foundation for transactional applications.
+					 - A shared ledger that supports smart contracts - ensure security and integrity of recoreded transaction.
+					 - Fabric supports the notion of "channel", a subnet of peers within the network that want to share information confidentially.
+					 - Fabric doesn't support the notion of "mining" use the notion of distributed consesus under a closed network.
+--The Fabric network - imp - module 1 , video 4, 29:00 min
+
+--Cryptography function properties
+	--Collision free- if two message are different then the digest also differ. one way.
+	--hiding - hiding the original message, remember about avalanche effect. not easy to find the message after encrytion.
+	--Puzzle friendly - Y = H(X||k) , we have to try random number which is very difficut to decode.
+	
+
+	
+
+
+
 
