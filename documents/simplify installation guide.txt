@@ -2,5 +2,5 @@
 2) Download ubuntu 18.06 (make sure not to download server)
 3) Install ubuntu on the VM. Use all default settings. Give good RAM around 3GB to VM.
 4) Install google chrome in ubuntu VM.
-5) Download and Install https://www.postgresql.org/download/
+5) Install https://www.postgresql.org/download/ for ubuntu or follow any other tutorial for installation by simply google search.
 6)
