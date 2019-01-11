@@ -1,0 +1,27 @@
+1) Install Oracle VM virtualbox 
+2) Download ubuntu 18.06 (make sure not to download server)
+3) Install ubuntu on the VM. Use all default settings. Give good RAM around 3GB to VM.
+4) Install google chrome in ubuntu VM.
+5) Install https://www.postgresql.org/download/ for ubuntu or follow any other tutorial for installation by simply google search.
+6) Install git in the machine.
+7) Clone the repository(Need permission as this is a private repository) - https://github.com/rajatchauhan126/SO_Single
+8) Install a text editor like sublime++, 
+9) Create User Account and database "demo"
+
+knockoutjs
+
+
+so username and password
+admin@example.com
+IMAdmin123!
+
+
+13.234.34.71:8100
+
+role - so_demo
+
+
+
+
+----------------
+1. where the data gets save when we save the form and when we view the page.
