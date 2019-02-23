@@ -1,4 +1,3 @@
 file1 need to keep after revert
 
-make some changes in file test
-fsf
+make some changes in file
